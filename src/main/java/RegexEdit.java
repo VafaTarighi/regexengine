@@ -20,6 +20,7 @@ public class RegexEdit extends JFrame {
 
     public RegexEdit() {
 
+
         tf = new JTextField();
         tf.setPreferredSize(new Dimension(500, 50));
         tf.setEditable(true);
@@ -29,13 +30,19 @@ public class RegexEdit extends JFrame {
 
         ta = new JTextArea();
         ta.setEditable(true);
+        ta.setSize(500, 450);
+        ta.setLineWrap(true);
+        ta.setWrapStyleWord(true);
         ta.setFont(new Font(null, Font.PLAIN, 15));
+
+        JScrollPane scroll = new JScrollPane(ta);
+        scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         hl = ta.getHighlighter();
         painter = new DefaultHighlighter.DefaultHighlightPainter(Color.pink);
 
         this.add(tf, BorderLayout.NORTH);
-        this.add(ta, BorderLayout.CENTER);
+        this.add(scroll, BorderLayout.CENTER);
         this.add(b, BorderLayout.SOUTH);
 
         this.setSize(500, 500);
@@ -59,6 +66,19 @@ public class RegexEdit extends JFrame {
             @Override
             public void keyTyped(KeyEvent e) {
                 hl.removeAllHighlights();
+            }
+        });
+
+        tf.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                hl.removeAllHighlights();
+                if (e.getKeyChar() == '\n') {
+                    String reg = tf.getText();
+                    String text = ta.getText();
+                    RegEng re = new RegEng(reg);
+                    highlight(re.analyze(text));
+                }
             }
         });
     }
