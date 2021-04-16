@@ -3,10 +3,7 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Highlighter;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 import java.util.Map;
 
 public class RegexEdit extends JFrame {
@@ -45,6 +42,7 @@ public class RegexEdit extends JFrame {
         this.add(scroll, BorderLayout.CENTER);
         this.add(b, BorderLayout.SOUTH);
 
+        this.setTitle("Reg Editor");
         this.setSize(500, 500);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
