@@ -25,6 +25,7 @@ concatenation
 ```
 
 **Note:** Don't use especial characters as literals in your expression because engine doesn't support escaping yet.
+
 **Note2:** Engine doesn't support expression validation. be sure to enter an expression with valid syntax.
 
 ## Used Algorithms
